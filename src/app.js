@@ -1,6 +1,6 @@
 function formatDate(timestamp) {
     let date = new Date(timestamp);
-    let hours = date.getHour();
+    let hours = date.getHours();
     if (hours < 10) {
         hours = `0${hours}`
     }
@@ -16,7 +16,6 @@ function formatDate(timestamp) {
 
 
 function displayTemperature(response) {
-console.log(response.data)
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
 let descriptionElement = document.querySelector("#description");
@@ -29,7 +28,7 @@ cityElement.innerHTML = response.data.name;
 descriptionElement.innerHTML = response.data.weather[0].description;
 humidityElement.innerHTML = response.data.main.humidity;
 windElement.innerHTML = Math.round(response.data.wind.speed);
-dateElement.innerHTML = response.data.coord.timezone
+dateElement.innerHTML = formatDate(response.data.dt *1000)
 }
 
 
