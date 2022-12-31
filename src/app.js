@@ -14,7 +14,6 @@ function formatDate(timestamp) {
     return `${day} ${hours}:${minutes}`;
 }
 
-
 function displayTemperature(response) {
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
@@ -59,11 +58,10 @@ function displayFahrenheitTemperature(event) {
     let fahrenheitTemperature = (celsiusTemperature * 9) /5 + 32;
     let temperatureElement = document.querySelector("#temperature");
     
+
     celsiusLink.classList.remove("active");
     fahrenheitLink.classList.add("active")
-    temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-
-    
+    temperatureElement.innerHTML = Math.round(fahrenheitTemperature)    
 }
 
 function displayCelsiusTemperature(event) {
@@ -87,5 +85,5 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 
-search("New York");
+search("Calabar");
 
