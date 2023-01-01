@@ -14,7 +14,9 @@ function formatDate(timestamp) {
     return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+    console.log(response.data.daily)
+
     let forecastElement = document.querySelector("#forecast");
 
     let forecastHTML = `<div class="row">`;
@@ -46,6 +48,14 @@ forecastHTML = forecastHTML + `</div>`;
 
 }
 
+function getForcast(coordinates) {
+    console.log(coordinates)
+    let apiKey = "2bd326a60dc89a53287e446e819664df";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    console.log(apiUrl);
+    axios.get(apiUrl).then(displayForecast);
+}
+
 function displayTemperature(response) {
 let temperatureElement = document.querySelector("#temperature");
 let cityElement = document.querySelector("#city");
@@ -70,6 +80,9 @@ iconElement.setAttribute(
      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
      );
      iconElement.setAttribute("alt", response.data.weather[0].description);
+     
+     getForcast(response.data.coord);
+
 }
 
 function search(city) {
@@ -120,4 +133,3 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 
 search("Calabar");
-displayForecast();
